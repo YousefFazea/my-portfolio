@@ -1,16 +1,11 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, GraduationCap } from 'lucide-react';
-import { publications } from '../data/publications.js';
 import { profile } from '../data/profile.js';
 import { researchAreas, researchThemes, activeProjects } from '../data/research.js';
 import { teaching } from '../data/teaching.js';
 import SectionHeader from '../components/SectionHeader.jsx';
 import BadgeList from '../components/BadgeList.jsx';
 import ResearchThemeCard from '../components/ResearchThemeCard.jsx';
-
-const publishedJournalArticles = publications.filter(
-  (publication) => publication.type === 'Journal Article' && publication.status === 'Published'
-).length;
 
 export default function Home() {
   return (
@@ -47,14 +42,10 @@ export default function Home() {
                 Ph.D. - Assistant Professor
               </span>
             </div>
-            <div className="mt-10 grid grid-cols-2 gap-3">
-              {[
-                { label: 'Career Publications', value: '90+', note: 'Journal articles, conference papers, and book chapters' },
-                { label: 'Journal Articles Listed', value: publishedJournalArticles, note: 'Published articles in the online bibliography' },
-                ...profile.stats,
-              ].map((stat) => (
-                <div key={stat.label} className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
-                  <p className="text-2xl font-bold text-white">{stat.value}</p>
+            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {profile.stats.map((stat) => (
+                <div key={stat.label} className="min-w-0 rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
+                  <p className="text-xl font-bold text-white">{stat.value}</p>
                   <p className="mt-1 text-sm font-bold text-white">{stat.label}</p>
                   {stat.note && <p className="mt-2 text-[10px] leading-tight text-white/50">{stat.note}</p>}
                 </div>

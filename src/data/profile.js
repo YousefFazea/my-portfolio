@@ -132,7 +132,8 @@ export const profile = {
     { label: 'ResearchGate', url: 'https://www.researchgate.net/profile/Yousef-Fazea' }
   ],
   stats: [
-    { label: 'Research Funding', value: '$1.89M', note: 'Marshall external awards as co-PI through Oct. 2026' },
-    { label: 'Student Researchers', value: '41', note: 'Marshall student researchers through Oct. 2026' }
+    { label: 'Career Publications', value: '90' },
+    { label: 'Research Funding Awarded', value: '$1.90M + RM 30,000', note: 'Marshall University and Universiti Utara Malaysia' },
+    { label: 'Students Involved in Research', value: '41', note: 'Marshall University' }
   ]
 };
