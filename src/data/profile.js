@@ -132,8 +132,9 @@ export const profile = {
     { label: 'ResearchGate', url: 'https://www.researchgate.net/profile/Yousef-Fazea' }
   ],
   stats: [
-    { label: 'Career Publications', value: '90' },
-    { label: 'Research Funding Awarded', value: '$1.90M + RM 30,000', note: 'Marshall University and Universiti Utara Malaysia' },
-    { label: 'Students Involved in Research', value: '41', note: 'Marshall University' }
+    { label: 'Publications', value: '90+', note: 'Journal articles, conference papers, book chapters' },
+    { label: 'Grants', value: '8+', note: '~$2M in internal and external funded projects' },
+    { label: 'Students Mentored', value: '35+', note: 'Undergraduate and graduate researchers' },
+    { label: 'Courses Taught', value: '20+', note: 'Across networking, security, and CS fundamentals' }
   ]
 };

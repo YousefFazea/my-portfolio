@@ -42,10 +42,10 @@ export default function Home() {
                 Ph.D. - Assistant Professor
               </span>
             </div>
-            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="mt-10 grid grid-cols-2 gap-3">
               {profile.stats.map((stat) => (
-                <div key={stat.label} className="min-w-0 rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
-                  <p className="text-xl font-bold text-white">{stat.value}</p>
+                <div key={stat.label} className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
+                  <p className="text-2xl font-bold text-white">{stat.value}</p>
                   <p className="mt-1 text-sm font-bold text-white">{stat.label}</p>
                   {stat.note && <p className="mt-2 text-[10px] leading-tight text-white/50">{stat.note}</p>}
                 </div>
