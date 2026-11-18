@@ -132,9 +132,9 @@ export const profile = {
     { label: 'ResearchGate', url: 'https://www.researchgate.net/profile/Yousef-Fazea' }
   ],
   stats: [
-    { label: 'Publications', value: '90+', note: 'Journal articles, conference papers, book chapters' },
-    { label: 'Grants', value: '8+', note: '~$2M in internal and external funded projects' },
-    { label: 'Students Mentored', value: '35+', note: 'Undergraduate and graduate researchers' },
-    { label: 'Courses Taught', value: '20+', note: 'Across networking, security, and CS fundamentals' }
+    { label: 'Journal Articles', value: '15', note: 'Published since joining Marshall in August 2021' },
+    { label: 'Research Funding', value: '$1.89M', note: 'External awards as co-PI at Marshall' },
+    { label: 'Student Researchers', value: '41', note: 'Undergraduate, master’s, and PhD students' },
+    { label: 'Conference Papers', value: '19', note: 'Refereed papers since joining Marshall' }
   ]
 };

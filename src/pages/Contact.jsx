@@ -1,8 +1,6 @@
-import { Send } from 'lucide-react';
+import { Download, Mail, Send } from 'lucide-react';
 import ContactCard from '../components/ContactCard.jsx';
 import { profile } from '../data/profile.js';
-import { Download } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import ScrollReveal from '../components/ScrollReveal.jsx';
 
 export default function Contact() {
@@ -24,12 +22,12 @@ export default function Contact() {
                 <Download size={16} /> Download CV
               </a>
 
-              <Link
-                to="/contact"
-                className="inline-flex justify-center rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
               >
-                Contact Information
-              </Link>
+                <Mail size={16} /> Email Dr. Fazea
+              </a>
 
             </div>
           </div>

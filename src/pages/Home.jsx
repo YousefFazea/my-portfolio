@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, FileText, FlaskConical, GraduationCap, Mail, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRight, FileText, GraduationCap } from 'lucide-react';
 import { profile } from '../data/profile.js';
 import { researchAreas, researchThemes, activeProjects } from '../data/research.js';
 import { teaching } from '../data/teaching.js';
 import SectionHeader from '../components/SectionHeader.jsx';
-import StatCard from '../components/StatCard.jsx';
 import BadgeList from '../components/BadgeList.jsx';
 import ResearchThemeCard from '../components/ResearchThemeCard.jsx';
 
 export default function Home() {
-  const statIcons = [FileText, FlaskConical, Users, BookOpen];
-
   return (
     <>
       <section className="gradient-hero text-white">
@@ -23,33 +20,30 @@ export default function Home() {
             <p className="mt-3 text-lg font-semibold text-white/90">{profile.title}</p>
             <p className="mt-1 text-sm text-white/75">{profile.department}</p>
             <p className="text-sm text-white/75">{profile.college}</p>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-white/82">{profile.shortBio}</p>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-white/82">I study secure IoT and communication systems, with a focus on trustworthy edge intelligence. I involve undergraduate and graduate students in this research.</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link to="/research" className="btn-secondary bg-white text-navy-900 hover:bg-white/90">
                 View Research <ArrowRight size={15} />
               </Link>
-              <Link to="/publications" className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10">
-                Publications
-              </Link>
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10">
-                <Mail size={15} /> Contact
+              <a href={profile.cvPath} className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10">
+                <FileText size={15} /> Download CV (PDF)
+              </a>
+              <Link to="/student-achievements" className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10">
+                <GraduationCap size={15} /> Student Research
               </Link>
             </div>
-            <a href={profile.cvPath} className="mt-4 inline-flex text-xs font-medium text-white/70 hover:text-white">
-              Download CV (PDF)
-            </a>
           </div>
 
           <div className="relative mx-auto w-full max-w-md">
             <div className="absolute -inset-5 rounded-full bg-white/10 blur-3xl" />
             <div className="relative mx-auto flex h-52 w-52 items-center justify-center rounded-full border-8 border-white/15 bg-white/10 p-2 shadow-2xl">
-              <img src={profile.portrait} alt="Profile placeholder for Dr. Yousef Fazea" className="h-full w-full rounded-full object-cover" />
+              <img src={profile.portrait} alt={profile.name} className="h-full w-full rounded-full object-cover" />
               <span className="absolute -bottom-3 rounded-full bg-white px-4 py-1 text-xs font-bold text-navy-900 shadow-soft">
                 Ph.D. - Assistant Professor
               </span>
             </div>
             <div className="mt-10 grid grid-cols-2 gap-3">
-              {profile.stats.map((stat, index) => (
+              {profile.stats.map((stat) => (
                 <div key={stat.label} className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
                   <p className="text-2xl font-bold text-white">{stat.value}</p>
                   <p className="mt-1 text-sm font-bold text-white">{stat.label}</p>
@@ -57,6 +51,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            <p className="mt-3 text-center text-xs text-white/75">Marshall research figures through October 2026</p>
           </div>
         </div>
       </section>

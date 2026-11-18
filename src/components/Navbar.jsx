@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { profile } from '../data/profile.js';
 
 
@@ -10,11 +10,14 @@ const navItems = [
   { label: 'Teaching', href: '/teaching' },
   { label: 'Research', href: '/research' },
   { label: 'Publications', href: '/publications' },
+  { label: 'Contact', href: '/contact' }
+];
+
+const moreItems = [
   { label: 'Student Achievements', href: '/student-achievements' },
   { label: 'Grants & Awards', href: '/grants-awards' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Media', href: '/media' },
-  { label: 'Contact', href: '/contact' }
+  { label: 'Videos', href: '/media' }
 ];
 
 export default function Navbar() {
@@ -23,6 +26,34 @@ export default function Navbar() {
   const linkClass = ({ isActive }) =>
     `rounded-md px-2 py-1.5 xl:px-2.5 text-xs font-semibold transition-all duration-300 ${isActive ? 'bg-navy-900 text-white shadow-soft' : 'text-slate-700 hover:bg-navy-50 hover:text-navy-900'
     }`;
+
+  const moreMenu = (panelClass) => (
+    <details
+      className="relative"
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) event.currentTarget.open = false;
+      }}
+      onKeyDown={(event) => {
+        if (event.key !== 'Escape' || !event.currentTarget.open) return;
+        event.currentTarget.open = false;
+        event.currentTarget.querySelector('summary').focus();
+      }}
+    >
+      <summary className="flex cursor-pointer list-none items-center gap-1 rounded-md px-2 py-1.5 text-xs font-semibold text-slate-700 hover:bg-navy-50 [&::-webkit-details-marker]:hidden">
+        More <ChevronDown size={14} aria-hidden="true" />
+      </summary>
+      <div className={panelClass}>
+        {moreItems.map((item) => (
+          <NavLink key={item.href} to={item.href} className={linkClass} onClick={(event) => {
+            event.currentTarget.closest('details').open = false;
+            setOpen(false);
+          }}>
+            {item.label}
+          </NavLink>
+        ))}
+      </div>
+    </details>
+  );
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
@@ -48,6 +79,7 @@ export default function Navbar() {
               {item.label}
             </NavLink>
           ))}
+          {moreMenu("absolute right-0 top-full grid w-48 gap-1 rounded-md border border-slate-200 bg-white p-2 shadow-soft")}
         </nav>
 
         <button
@@ -68,6 +100,7 @@ export default function Navbar() {
                 {item.label}
               </NavLink>
             ))}
+            {moreMenu("grid gap-1 pl-3 pt-1")}
           </div>
         </nav>
       )}

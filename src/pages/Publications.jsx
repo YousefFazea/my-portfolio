@@ -90,38 +90,9 @@ export default function Publications() {
         </div>
       </section>
 
-      <section className="page-shell py-10">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {publicationStats.map((stat) => (
-            <StatCard
-              key={stat.label}
-              label={stat.label}
-              value={stat.value}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="page-shell py-12">
-        <SectionHeader
-          title="Selected Publications"
-          subtitle="Representative works highlighted for quick review."
-        />
-
-        <div className="grid gap-4">
-          {selected.map((publication, index) => (
-            <PublicationCard
-              key={`${publication.title}-${publication.year}-selected`}
-              publication={publication}
-              index={index}
-            />
-          ))}
-        </div>
-      </section>
-
       <section className="page-shell py-4">
         <SectionHeader
-          title="Full Publication List"
+          title="Search Publications"
           subtitle={`${filtered.length} publication records currently shown.`}
         />
 
@@ -134,6 +105,7 @@ export default function Publications() {
               />
 
               <input
+                aria-label="Search publications"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search by title, author, year, venue, or keyword"
@@ -146,6 +118,7 @@ export default function Publications() {
                 <button
                   key={item}
                   type="button"
+                  aria-pressed={type === item}
                   onClick={() => setType(item)}
                   className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${type === item
                     ? 'bg-navy-900 text-white'
@@ -158,7 +131,42 @@ export default function Publications() {
             </div>
           </div>
         </div>
+      </section>
 
+      {!query.trim() && type === 'All' && (
+        <>
+          <section className="page-shell py-10">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {publicationStats.map((stat) => (
+                <StatCard
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                />
+              ))}
+            </div>
+          </section>
+          <section className="page-shell py-12">
+            <SectionHeader
+              title="Selected Publications"
+              subtitle="Representative works highlighted for quick review."
+            />
+
+            <div className="grid gap-4">
+              {selected.map((publication, index) => (
+                <PublicationCard
+                  key={`${publication.title}-${publication.year}-selected`}
+                  publication={publication}
+                  index={index}
+                />
+              ))}
+            </div>
+          </section>
+        </>
+      )}
+      <section className="page-shell pb-12" aria-label="Publication results">
+        <h2 className="mb-4 text-xl font-bold text-slate-950">Full Publication List</h2>
+        {!filtered.length && <p className="text-sm text-slate-600">No publications match your search.</p>}
         <div className="grid gap-4">
           {filtered.map((publication, index) => (
             <PublicationCard
