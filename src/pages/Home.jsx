@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, GraduationCap } from 'lucide-react';
+import { publications } from '../data/publications.js';
 import { profile } from '../data/profile.js';
 import { researchAreas, researchThemes, activeProjects } from '../data/research.js';
 import { teaching } from '../data/teaching.js';
 import SectionHeader from '../components/SectionHeader.jsx';
 import BadgeList from '../components/BadgeList.jsx';
 import ResearchThemeCard from '../components/ResearchThemeCard.jsx';
+
+const publishedJournalArticles = publications.filter(
+  (publication) => publication.type === 'Journal Article' && publication.status === 'Published'
+).length;
 
 export default function Home() {
   return (
@@ -20,7 +25,7 @@ export default function Home() {
             <p className="mt-3 text-lg font-semibold text-white/90">{profile.title}</p>
             <p className="mt-1 text-sm text-white/75">{profile.department}</p>
             <p className="text-sm text-white/75">{profile.college}</p>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-white/82">I study secure IoT and communication systems, with a focus on trustworthy edge intelligence. I involve undergraduate and graduate students in this research.</p>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-white/82">{profile.shortBio}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link to="/research" className="btn-secondary bg-white text-navy-900 hover:bg-white/90">
                 View Research <ArrowRight size={15} />
@@ -43,7 +48,11 @@ export default function Home() {
               </span>
             </div>
             <div className="mt-10 grid grid-cols-2 gap-3">
-              {profile.stats.map((stat) => (
+              {[
+                { label: 'Career Publications', value: '90+', note: 'Journal articles, conference papers, and book chapters' },
+                { label: 'Journal Articles Listed', value: publishedJournalArticles, note: 'Published articles in the online bibliography' },
+                ...profile.stats,
+              ].map((stat) => (
                 <div key={stat.label} className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
                   <p className="text-2xl font-bold text-white">{stat.value}</p>
                   <p className="mt-1 text-sm font-bold text-white">{stat.label}</p>
@@ -51,7 +60,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <p className="mt-3 text-center text-xs text-white/75">Marshall research figures through October 2026</p>
           </div>
         </div>
       </section>
