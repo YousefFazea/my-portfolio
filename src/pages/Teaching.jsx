@@ -62,12 +62,12 @@ function CourseList({ title, courses, accent }) {
             </span>
 
             <span
-              className={`rounded-full px-2 py-0.5 text-[10px] font-extrabold ${course.institution === 'MU'
-                ? 'bg-emerald-50 text-emerald-700'
-                : 'bg-green-50 text-green-700'
+              className={`rounded-full px-2 py-0.5 text-[10px] font-extrabold ${course.institution === 'UUM'
+                ? 'bg-blue-50 text-blue-700'
+                : 'bg-emerald-50 text-emerald-700'
                 }`}
             >
-              {course.institution || (isGreen ? 'MU' : 'MU')}
+              {course.institution ?? 'MU'}
             </span>
           </div>
         ))}
